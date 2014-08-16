@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<div class="container">
+  <div class="lead blog-header">
+    <h1 class="blog-title"><%= @user.name + "的主页" %></h1>
+    <p class="blog-description">Welcome to my Yo Blog</p>
+    <div class='create-link'>
+      <button type='button' class='btn btn-primary'>
+        <%= link_to "<div>new</div>".html_safe, new_article_path, :method => "get" %>
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-8 blog-main">
+    <h2><%= @user.name + "的博客" %></h2>
+    <% if @user.articles %>
+      <% @user.articles.each do |article| %>
+        <h3 class="article-title">
+          <font size = 4><%= article.title %></font>
+        </h3>
+        <div class='article-text'>
+          <font color = "#808080"><%= article.text  %></font>
+        </div>
+
+        <p class='curd'><%= link_to 'Show', article_path(article) %>
+          <%= link_to 'Edit', edit_article_path(article) %>
+          <%= link_to 'Destroy', article_path(article),
+            method: :delete, data: { confirm: 'Are you sure?'} %>
+        </p>
+      <%end%>
+    <%end%>
+    <h2><%= @user.name + "的评论" %></h2>
+    <% if @user.comments %>
+      <% @user.comments.each do |comment| %>
+        <%= @user.name.to_s + "对" + comment.article.title.to_s + "(作者：" + comment.article.user.name.to_s + ")" + "文章评论"%>
+        <h3 class="article-title">
+          <font size = 4><%= comment.commenter %></font>
+        </h3>
+        <div class='article-text'>
+          <font color = "#808080"><%= comment.body  %></font>
+        </div>
+        <p class='curd'>
+          <%= link_to 'Destroy', [comment.article, comment],
+            method: :delete, data: { confirm: 'Are you sure?'} %>
+        </p>
+      <%end%>
+    <%end%>
+  </div>
+
+</div>
+
+
+<%= link_to '返回', users_path,class: "btn btn-primary log-reg-btn" %>

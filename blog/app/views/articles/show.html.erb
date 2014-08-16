@@ -1,0 +1,16 @@
+
+<div class="container">
+	<h2 id="show-article-title"><%= @article.title %></h2>
+
+	<h4 id="show-article-username"><%= "作者:  " + @article_user.name %></h4>
+	<p id="show-article-text"><%= @article.markdown_text.html_safe %></p>
+
+	<h4>本文评论</h4>
+	<%= render @article.comments %>
+
+	<h5>我要评论</h5>
+	<%= render 'comments/form' %>
+
+	<%= link_to 'Back', articles_path %>
+	| <%= link_to 'Edit', edit_article_path(@article) %>
+</div>

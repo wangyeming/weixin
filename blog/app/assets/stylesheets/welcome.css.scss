@@ -1,0 +1,43 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.welcome {
+	text-align: center;
+	color: #808080;
+	margin-top: 200px;
+
+}
+
+#log-reg{
+	margin-top: 150px;
+	border: solid 1px gray;
+	border-radius: 10px;
+	width: 250px;
+	height: 400px;
+	margin-left: -200px;
+}
+
+#log-reg-tabs{
+
+	width: 250px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+#log-reg-input{
+	width: 250px;
+	padding:20px;
+}
+
+.input{
+	margin: -5px;
+	font-size: 20px;
+
+}
+.log-reg-btn{
+	margin-left: 105px;
+	width: 100px;
+}
+

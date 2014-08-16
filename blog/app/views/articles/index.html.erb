@@ -1,0 +1,45 @@
+<div class="container">
+  <% if flash[:alert] %>
+  <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
+  <div class="lead blog-header">
+    <h1 class="blog-title">Yo Blog首页墙</h1>
+    <p class="blog-description">最新博客列表</p>
+    <div class='create-link'>
+      <button type='button' class='btn btn-primary'>
+        <%= link_to "<div>写博客</div>".html_safe, new_article_path, :method => "get" %>
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-8 blog-main">
+
+    <% @articles.each do |article| %>
+    <h2 class="article-title">
+      <font size = 4><%= article.title %></font>
+      <font size = 2><%="    作者: "%><%=article.user.name%></font>
+    </h2>
+    <div class='article-text'>
+      <font color = "#808080"><%= article.text  %></font>
+    </div>
+
+    <p class='curd'><%= link_to 'Show', article_path(article) %>
+      <%= link_to 'Edit', edit_article_path(article) %>
+      <%= link_to 'Destroy', article_path(article),
+      method: :delete, data: { confirm: 'Are you sure?'} %>
+    </p>
+
+    <%end%>
+  </div>
+  <div class="col-sm-3 sidebar">
+    <div class="sidebar-about">
+      <h4>About</h4>
+      <p>Yo Blog欢迎你</p>
+    </div>
+    <div class="tag">
+      <%= link_to "tag2",articles_path %><br>
+      <%= link_to "tag1",articles_path %><br>
+      <%= link_to "tag2",articles_path %><br>
+      <%= link_to "tag1",articles_path %>
+    </div>
+  </div>
+</div>

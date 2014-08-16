@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yo Blog</title>
+    <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body style="background-image: url(http://res1.windows.microsoft.com/resbox/en/windows%207/main/390b43aa-5103-4f36-ab20-3b218edaf702_6.jpg);">
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav pull-right">
+              <li><%= link_to "Home",    articles_path %></li>
+              <li><%= link_to "Welcome",  welcome_index_path %></li>
+              <li><%= link_to "Sign up",    users_new_path %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,13 @@
+<p>
+	<%= comment.user.name %> 说:
+	<%= comment.commenter %>
+	<div class="comment-body">
+	  补充：<%= comment.body %>
+	</div>
+</p>
+
+<p>
+  <%= link_to '删除评论', [comment.article, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

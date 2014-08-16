@@ -1,0 +1,61 @@
+<div class = "col-sm-8 welcome">
+  <h1>欢迎加入Yo Blog</h1>
+  <%= link_to 'here is My blog', controller: 'articles' %>
+</div>
+
+
+<div class="col-sm-4">
+  <%= form_for(@user) do |f| %>
+
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <% end %>
+
+  <% if flash[:alert] %>
+  <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
+
+  <% if flash[:notice] %>
+  <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+
+  <div id="log-reg">
+    <ul class="nav nav-tabs" id="log-reg-tabs" role="tablist">
+      <li class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
+      <li><a href="#regist" role="tab" data-toggle="tab">Register</a></li>
+    </ul>
+    <div class="tab-content" id="log-reg-input">
+      <div class="tab-pane active" id="login">
+        <%= form_tag('/login') do %>
+        <%= label_tag :name, 'Name:' %><br>
+        <%= text_field_tag :name, params[:name],class: 'form-control input' %><br>
+        <%= label_tag :password, 'Password:' %>
+        <%= password_field_tag :password, params[:password],class: 'form-control input' %><br>
+        <%= submit_tag "Login",class: "btn btn-primary log-reg-btn" %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="regist">
+        <%= form_for(@user) do |f| %>
+
+        <%= f.label :name, 'Name:' %>
+        <%= f.text_field :name, class: "form-control input" %><br>
+        <%= f.label :password, 'Password:' %>
+        <%= f.password_field :password, class: "form-control input" %><br>
+        <%= f.label :password_confirmation, 'Password_confirmation:' %>
+        <%= f.password_field :password_confirmation, class: "form-control input" %><br>
+        <%= f.submit "Register",class: "btn btn-primary log-reg-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

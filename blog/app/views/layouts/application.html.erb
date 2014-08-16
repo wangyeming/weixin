@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="blog-masthead">
+    <div class="container">
+      <nav class="blog-nav">
+        <a class="blog-nav-item active" href="http://localhost:3000/articles" >Home</a>
+        <a class="blog-nav-item" href="#">About</a>
+
+        <% if logged_in? %>
+          <a class="blog-nav-item active" href="http://localhost:3000/users" >Users</a>
+          <% user_num = (session[:user_id]).to_s %>
+          <% homepage = "http://localhost:3000/users/" + user_num %>
+          <%= link_to '我的主页', homepage, class: "btn btn-primary log-reg-btn" %>
+          <button type='button' class='btn btn-primary'>
+            <%= link_to "<div>退出登录</div>".html_safe, logout_path, method: :delete  %>
+          </button>
+          <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          <%= p "欢迎来到 Yo Blog" %>
+          <%= current_user.name%>
+          <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          <%= "我的博客数： " %>
+          <%= current_user_articles_count %>
+          <a>&nbsp;&nbsp;</a>
+          <%= "我的评论数： " %>
+          <%= current_user_comments_count %>
+
+        <% else %>
+          <a class="blog-nav-item active" href=admin >Sign in</a>
+          <%= p "欢迎来到Yo blog,游客" %>
+        <% end %>
+        <% if flash[:alert] %>
+        <p id="notice"><%= flash[:alert] %></p>
+        <% end %>
+
+      </div>
+    </div>
+    <%= yield %>
+  </body>
+  </html>
